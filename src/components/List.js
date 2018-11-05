@@ -53,11 +53,12 @@ export default class List extends Component {
                   </A>
                   <span className="f6 db black-70">{d.description}</span>
                 </div>
-                {/* <div>
-                  <a href="tel:" className="f6 link blue hover-dark-gray">
+                <div>
+                  {/* <a href="tel:" className="f6 link blue hover-dark-gray">
                     +1 (999) 555-5555
-                  </a>
-                </div> */}
+                  </a> */}
+                  <img src={iconsArray.StarOf} />
+                </div>
               </ListItem>
             );
           })}
