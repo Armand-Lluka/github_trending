@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import List from "./components/List";
 import Languages from "./components/Languages";
+import langArray from "./components/icons/iconsArray";
+
 // import styled from "styled-components";
 
 class App extends Component {
@@ -9,7 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       trendingRes: [],
-      icons: []
+      icons: langArray
     };
   }
 
@@ -25,8 +27,8 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Languages />
-        <List repoName={this.state.trendingRes} />
+        <Languages langArray={this.state.icons} />
+        <List repoName={this.state.trendingRes} langArray={this.state.icons} />
       </div>
     );
   }
@@ -34,8 +36,8 @@ class App extends Component {
 
 export default App;
 
-{
-  /* {this.state.trendingRes.slice(0, 10).map((d, idx) => {
+// {
+/* {this.state.trendingRes.slice(0, 10).map((d, idx) => {
           return <li key={idx}>{d.name}</li>;
         })} */
-}
+// }

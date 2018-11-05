@@ -1,25 +1,29 @@
 import C from "./C.png";
 import CSharp from "./C#.png";
 import CPlusPlus from "./C++.png";
-import Golang from "./Golang.png";
+import Go from "./Golang.png";
 import Java from "./Java.png";
-import Javascript from "./Javascript.png";
+import JavaScript from "./Javascript.png";
 import PHP from "./PHP.png";
 import Python from "./Python.png";
 import Ruby from "./Ruby.png";
 import Swift from "./Swift.png";
-import Typescript from "./Typescript.png";
+import TypeScript from "./Typescript.png";
+import StarOf from "./star.png";
+import StarOn from "./star1.png";
 
-export default [
+export default {
   C,
-  CSharp,
-  CPlusPlus,
-  Golang,
+  "C#": CSharp,
+  "C++": CPlusPlus,
+  Go,
   Java,
-  Javascript,
+  JavaScript,
   PHP,
   Python,
   Ruby,
   Swift,
-  Typescript
-];
+  TypeScript,
+  StarOf,
+  StarOn
+};
