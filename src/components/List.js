@@ -54,7 +54,7 @@ export default class List extends Component {
                   <span className="f6 db black-70">{d.description}</span>
                 </div>
 
-                <img src={iconsArray.StarOf} className="  h2 w2 " />
+                <img src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" />
               </ListItem>
             );
           })}
