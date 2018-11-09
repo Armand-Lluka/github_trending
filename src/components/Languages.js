@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import langArray from "./icons/iconsArray";
 
 const Section = styled.section.attrs({
   className: "pv4 ph3 ph5-ns tc"
@@ -14,55 +13,53 @@ const Span = styled.span.attrs({
   className: "f6 db"
 })``;
 
-console.log(langArray);
-
 export default class Languages extends Component {
   render() {
     return (
       <Section>
         <Link>
-          <img src={langArray[0]} alt="C" />
+          <img src={this.props.langArray.C} alt="C" />
           <Span className>C</Span>
         </Link>
         <Link>
-          <img src={langArray[1]} alt="C" />
+          <img src={this.props.langArray["C#"]} alt="C" />
           <Span className>C#</Span>
         </Link>
         <Link>
-          <img src={langArray[2]} alt="C" />
+          <img src={this.props.langArray["C++"]} alt="C" />
           <Span className>C++</Span>
         </Link>
         <Link>
-          <img src={langArray[3]} alt="C" />
-          <Span className>Gol</Span>
+          <img src={this.props.langArray.Go} alt="C" />
+          <Span className>Go</Span>
         </Link>
         <Link>
-          <img src={langArray[4]} alt="C" />
+          <img src={this.props.langArray.Java} alt="C" />
           <Span className>Java</Span>
         </Link>{" "}
         <Link>
-          <img src={langArray[5]} alt="C" />
-          <Span className>JS</Span>
+          <img src={this.props.langArray.JavaScript} alt="C" />
+          <Span className>JavaScript</Span>
         </Link>{" "}
         <Link>
-          <img src={langArray[6]} alt="C" />
+          <img src={this.props.langArray.PHP} alt="C" />
           <Span className>PHP</Span>
         </Link>
         <Link>
-          <img src={langArray[7]} alt="C" />
+          <img src={this.props.langArray.Python} alt="C" />
           <Span className>Python</Span>
         </Link>
         <Link>
-          <img src={langArray[8]} alt="C" />
+          <img src={this.props.langArray.Ruby} alt="C" />
           <Span className>Ruby</Span>
         </Link>
         <Link>
-          <img src={langArray[9]} alt="C" />
+          <img src={this.props.langArray.Swift} alt="C" />
           <Span className>Swift</Span>
         </Link>
         <Link>
-          <img src={langArray[10]} alt="C" />
-          <Span className>TS</Span>
+          <img src={this.props.langArray.TypeScript} alt="C" />
+          <Span className>TypeScript</Span>
         </Link>
       </Section>
     );
