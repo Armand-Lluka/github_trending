@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import iconsArray from "./icons/iconsArray.js";
-// import Spinner from "./Spinner"
+import Spinner from "./Spinner"
 
 // Styled Tachyons Components
 
@@ -38,11 +38,11 @@ const Capitalize = str => {
 
 export default class List extends Component {
   render() {
-    const apiTopTen = this.props.repoName.slice(0, 9);
+    const apiTopTen = this.props.repoName.slice(0, 25);
     return (
       <Section>
-        {/* {this.props.loading ? <Spinner></Spinner> : <UL></UL> } */}
-        {/* <Spinner></Spinner> */}
+        {this.props.loading ? <Spinner></Spinner> : <UL></UL> }
+        {/* <Spinner className="ma7"></Spinner> */}
         <UL>
           {apiTopTen.map((d, idx) => {
             const lang = d.language;
