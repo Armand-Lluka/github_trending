@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import iconsArray from "./icons/iconsArray.js";
+import Spinner from "./Spinner"
 
 // Styled Tachyons Components
 
@@ -40,12 +41,14 @@ export default class List extends Component {
     const apiTopTen = this.props.repoName.slice(0, 25);
     return (
       <Section>
+        {this.props.loading ? <Spinner></Spinner> : <UL></UL> }
+        {/* <Spinner className="ma7"></Spinner> */}
         <UL>
           {apiTopTen.map((d, idx) => {
             const lang = d.language;
             return (
               <ListItem key={idx}>
-                <Icon
+                <Icon 
                   src={
                     iconsArray[lang]
                       ? iconsArray[lang]
@@ -54,15 +57,15 @@ export default class List extends Component {
                 />
 
                 <div className="pl3 flex-auto">
-                  <A href={d.url} target={"_blank"}>
+                  <A  href={d.url} target={"_blank"}>
                     <span className="f5 fw9 b db black-70">
                       {Capitalize(d.name)}
                     </span>
                   </A>
-                  <span className="f6 db black-70">{d.description}</span>
+                  <span  className="f6 db black-70">{d.description}</span>
                 </div>
 
-                <img src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" />
+                <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" />
               </ListItem>
             );
           })}
