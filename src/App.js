@@ -24,7 +24,8 @@ class App extends Component {
     this.setState({
       lang: e
     })
-    console.log(this.state.lang)
+    // console.log(this.state.lang)
+
   }
 
   componentDidUpdate() {
@@ -35,11 +36,11 @@ class App extends Component {
       )
         .then(res => res.json())
         .then(data => this.setState({ trendingRes: data }))
+        .then(console.log(this.state.lang))
+        .then(this.setState({lang: ""}))
         .then(this.setState({isLoading: true}))
     }
-    this.state.lang = ""
     this.state.isLoading = false;
-
   }
 
   render() {
@@ -47,8 +48,8 @@ class App extends Component {
       <div>
         <Header />
         <Languages langArray={this.state.icons} lang={(e) =>this.setLang(e)} />
-        <List repoName={this.state.trendingRes} langArray={this.state.icons} loading={this.state.isLoading} />
-        {/* <Spinner className="center"></Spinner> */}
+        {/* <List repoName={this.state.trendingRes} langArray={this.state.icons} loading={this.state.isLoading} /> */}
+        {this.state.isLoading ? <Spinner></Spinner> : <List repoName={this.state.trendingRes} langArray={this.state.icons} loading={this.state.isLoading}></List>}
       </div>
     );
   }
