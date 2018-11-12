@@ -11,23 +11,35 @@ class App extends Component {
     super(props);
     this.state = {
       trendingRes: [],
-      icons: langArray
+      icons: langArray,
+      lang: 'Javascript'
     };
   }
 
+  Hello = () => alert('Hello')
+
   componentDidMount() {
-    fetch(
-      "https://github-trending-api.now.sh/repositories?language=all&since=weekly"
-    )
-      .then(res => res.json())
-      .then(data => this.setState({ trendingRes: data }));
+
+    if (this.lang !== '') {
+      console.log(this.state.lang)
+      const url = "https://github-trending-api.now.sh/repositories?language=javascript&since=weekly"
+      fetch(
+        // `https://github-trending-api.now.sh/repositories?${this.state.lang}=all&since=weekly`
+        url
+      )
+        .then(res => res.json())
+        .then(data => this.setState({ trendingRes: data }));
+    }
+
+
+
   }
 
   render() {
     return (
       <div>
         <Header />
-        <Languages langArray={this.state.icons} />
+        <Languages langArray={this.state.icons} greet={this.Hello} />
         <List repoName={this.state.trendingRes} langArray={this.state.icons} />
       </div>
     );

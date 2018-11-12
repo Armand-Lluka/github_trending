@@ -22,6 +22,10 @@ const Name = styled.h2.attrs({
 
 // Styled Tachyons Components
 
+
+
+
+
 export default () => (
   <Header>
     <HeaderLogo src={logo} alt="avatar" />

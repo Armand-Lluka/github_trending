@@ -17,7 +17,7 @@ export default class Languages extends Component {
   render() {
     return (
       <Section>
-        <Link>
+        <Link onClick={this.props.greet}>
           <img src={this.props.langArray.C} alt="C" />
           <Span className>C</Span>
         </Link>
