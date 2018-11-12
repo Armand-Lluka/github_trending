@@ -16,7 +16,6 @@ class App extends Component {
       lang: "",
       isLoading: false
     };
-    // this.Hello = this.Hello.bind(this)
   }
 
   setLang = (e) => {

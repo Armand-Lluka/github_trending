@@ -17,11 +17,11 @@ export default class Languages extends Component {
   render() {
     return (
       <Section>
-        <Link onClick={ () => this.props.lang('c')}>
+        <Link onClick={ () => this.props.lang('C')}>
           <img src={this.props.langArray.C} alt="C" />
           <Span className>C</Span>
         </Link>
-        <Link onClick={ () => this.props.lang("c%23")}>
+        <Link onClick={ () => this.props.lang("C%23")}>
           <img src={this.props.langArray["C#"]} alt="C#" />
           <Span className>C#</Span>
         </Link>
