@@ -38,7 +38,7 @@ const Capitalize = str => {
 
 export default class List extends Component {
   render() {
-    const apiTopTen = this.props.repoName.slice(0, 25);
+    const apiTopTen = this.props.repoName.slice(0, 9);
     return (
       <Section>
         {this.props.loading ? <Spinner></Spinner> : <UL></UL> }
@@ -64,8 +64,10 @@ export default class List extends Component {
                   </A>
                   <span  className="f6 db black-70">{d.description}</span>
                 </div>
+                  {/* <a className=" nested-img img"> */}
+                  <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={() => alert('Hello')} />
 
-                <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" />
+                  {/* </a> */}
               </ListItem>
             );
           })}

@@ -14,17 +14,16 @@ class App extends Component {
       trendingRes: [],
       icons: langArray,
       lang: "",
-      isLoading: false
+      isLoading: false,
+      imageOf: '',
+      ImageOn: ''
     };
   }
 
   setLang = (e) => {
-    // alert('Hello')
     this.setState({
       lang: e
     })
-    // console.log(this.state.lang)
-
   }
 
   componentDidUpdate() {
@@ -33,11 +32,12 @@ class App extends Component {
       fetch(
         `https://github-trending-api.now.sh/repositories?language=${this.state.lang}&since=weekly`
       )
+        .then(console.log(`https://github-trending-api.now.sh/repositories?language=${this.state.lang}&since=weekly`))
         .then(res => res.json())
         .then(data => this.setState({ trendingRes: data }))
         .then(console.log(this.state.lang))
-        .then(this.setState({lang: ""}))
-        .then(this.setState({isLoading: true}))
+        .then(this.setState({ lang: "" }))
+        .then(this.setState({ isLoading: true }))
     }
     this.state.isLoading = false;
   }
@@ -56,8 +56,4 @@ class App extends Component {
 
 export default App;
 
-// {
-/* {this.state.trendingRes.slice(0, 10).map((d, idx) => {
-          return <li key={idx}>{d.name}</li>;
-        })} */
-// }
+

@@ -2,29 +2,29 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const Section = styled.section.attrs({
-  className: "pv4 ph3 ph5-ns tc"
+  className: "pv4 ph3 ph5-ns tc "
 })``;
 
 const Link = styled.a.attrs({
-  className: "link hover-near-black hover-silver dim dib h3 w3 mr3"
+  className: "link hover-near-black hover-silver dim dib h2 w2 h3-ns w3-ns mr3"
 })``;
 
 const Span = styled.span.attrs({
-  className: "f6 db"
+  className: "f6 db-ns dn"
 })``;
 
 export default class Languages extends Component {
   render() {
     return (
-      <Section>
+      <Section >
         <Link onClick={ () => this.props.lang('C')}>
           <img src={this.props.langArray.C} alt="C" />
-          <Span className>C</Span>
+          <Span className="hide">C</Span>
         </Link>
-        <Link onClick={ () => this.props.lang("C%23")}>
+        {/* <Link onClick={ () => this.props.lang("c%23")}>
           <img src={this.props.langArray["C#"]} alt="C#" />
           <Span className>C#</Span>
-        </Link>
+        </Link> */}
         <Link onClick={ () => this.props.lang('c%2B%2B')}>
           <img src={this.props.langArray["C++"]} alt="C++" />
           <Span className>C++</Span>
