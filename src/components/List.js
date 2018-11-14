@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import iconsArray from "./icons/iconsArray.js";
-import Spinner from "./Spinner"
+// import Spinner from "./Spinner"
 
 // Styled Tachyons Components
 
@@ -38,16 +38,16 @@ const Capitalize = str => {
 
 export default class List extends Component {
   render() {
-    const apiTopTen = this.props.repoName.slice(0, 9);
+    const {repoName, handleClick} = this.props
     return (
       <Section>
-        {this.props.loading ? <Spinner></Spinner> : <UL></UL> }
+        {/* {this.props.loading ? <Spinner></Spinner> : <UL></UL> } */}
         {/* <Spinner className="ma7"></Spinner> */}
         <UL>
-          {apiTopTen.map((d, idx) => {
+          {repoName.map((d, index) => {
             const lang = d.language;
             return (
-              <ListItem key={idx}>
+              <ListItem key={index}>
                 <Icon 
                   src={
                     iconsArray[lang]
@@ -65,7 +65,7 @@ export default class List extends Component {
                   <span  className="f6 db black-70">{d.description}</span>
                 </div>
                   {/* <a className=" nested-img img"> */}
-                  <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={() => alert('Hello')} />
+                  <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={() => handleClick(repoName[index])} />
 
                   {/* </a> */}
               </ListItem>
@@ -97,10 +97,10 @@ export default class List extends Component {
 </ul> */
 // }
 
-// {apiTopTen.map((d, idx) => {
+// {repoName.map((d, index) => {
 //   return (
 //     <a className="link" href={d.url}>
-//       <Name key={idx}>{d.name}</Name>
+//       <Name key={index}>{d.name}</Name>
 //     </a>
 //   );
 // })}
