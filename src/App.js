@@ -5,7 +5,7 @@ import Languages from "./components/Languages";
 import langArray from "./components/icons/iconsArray";
 import Spinner from "./components/Spinner";
 import Starred from "./components/Starred";
-
+import Tabs from "./components/Tabs";
 // import styled from "styled-components";
 
 class App extends Component {
@@ -20,8 +20,7 @@ class App extends Component {
       imageOf: "",
       ImageOn: ""
     };
-    this.handleEvent = this.handleEvent.bind(this);
-
+    // this.handleEvent = this.handleEvent.bind(this);
   }
 
   setLang = e => {
@@ -32,8 +31,8 @@ class App extends Component {
 
   handleEvent = clickRepo => {
     const { trendingRes, starred } = this.state;
-    if(starred.indexOf(clickRepo) === -1){
-      starred.push(clickRepo)
+    if (starred.indexOf(clickRepo) === -1) {
+      starred.push(clickRepo);
     }
     console.log(starred);
   };
@@ -64,23 +63,33 @@ class App extends Component {
   render() {
     return (
       <div>
-        
         <Header />
         <Languages langArray={this.state.icons} lang={e => this.setLang(e)} />
-        <Starred 
-        starredList={this.state.starred}
-        langArray={this.state.icons} />
+        <Tabs>
+          <div label="repos">
+            {this.state.isLoading ? (
+              <Spinner />
+            ) : (
+              <List
+                repoName={this.state.trendingRes}
+                langArray={this.state.icons}
+                loading={this.state.isLoading}
+                handleClick={this.handleEvent}
+              />
+            )}
+          </div>
+          <div label="starred">
+            <Starred
+              starredList={this.state.starred}
+              langArray={this.state.icons}
+            >
+              {" "}
+            </Starred>
+          </div>
+
+        </Tabs>
+
         {/* <List repoName={this.state.trendingRes} langArray={this.state.icons} loading={this.state.isLoading} /> */}
-        {this.state.isLoading ? (
-          <Spinner />
-        ) : (
-          <List
-            repoName={this.state.trendingRes}
-            langArray={this.state.icons}
-            loading={this.state.isLoading}
-            handleClick={this.handleEvent}
-          />
-        )}
       </div>
     );
   }

@@ -60,7 +60,7 @@ export default class List extends Component {
                   <A  href={d.url} target={"_blank"}>
                     <span className="f5 fw9 b db black-70">
                       {Capitalize(d.name)}
-                    </span>
+                    </span> 
                   </A>
                   <span  className="f6 db black-70">{d.description}</span>
                 </div>
