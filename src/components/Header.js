@@ -13,16 +13,14 @@ const HeaderLogo = styled.img.attrs({
 })``;
 
 const Title = styled.h1.attrs({
-  className: "f5 f4-ns fw6 mid-gray"
+  className: "f5 f4-ns fw6 mid-gray courier"
 })``;
 
 const Name = styled.h2.attrs({
-  className: "f6 gray fw2 ttu tracked"
+  className: "f6 gray fw2 ttu tracked courier"
 })``;
 
 // Styled Tachyons Components
-
-
 
 
 

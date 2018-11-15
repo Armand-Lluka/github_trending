@@ -16,7 +16,7 @@ class App extends Component {
       starred: [],
       icons: langArray,
       lang: "",
-      isLoading: false,
+      isLoading: false
     };
   }
 
@@ -26,9 +26,9 @@ class App extends Component {
     });
   };
 
-  handleEvent = ( clickRepo) => {
+  handleEvent = clickRepo => {
     const { starred } = this.state;
-   
+
     if (starred.indexOf(clickRepo) === -1) {
       starred.push(clickRepo);
       // const result = starred.reduce((a,b) => {
@@ -37,20 +37,12 @@ class App extends Component {
       //   }
       //   return a
       // }, [])
-      console.log(starred.indexOf(clickRepo))
+      console.log(starred.indexOf(clickRepo));
+    } else if (starred.indexOf(clickRepo) !== -1) {
+      starred.splice(starred.indexOf(clickRepo), 1);
     }
-   
-   else if(starred.indexOf(clickRepo) !== -1){
-      console.log("hi")
-      starred.splice(starred.indexOf(clickRepo), 1)
-    }
-
-
-    
-
-    this.forceUpdate()
-  
-  }
+    this.forceUpdate();
+  };
 
   componentDidUpdate() {
     if (this.state.lang !== "") {
@@ -63,7 +55,7 @@ class App extends Component {
         // .then(data => {this.setState({ trendingRes: data.slice(0, 9) })})
         .then(data => {
           if (!this.state.trendingRes.includes(data)) {
-            this.setState({ trendingRes: data.slice(0, 9) })
+            this.setState({ trendingRes: data.slice(0, 9) });
           }
         })
         // .then(console.log(this.state.lang))
@@ -89,8 +81,8 @@ class App extends Component {
                 loading={this.state.isLoading}
                 handleClick={this.handleEvent}
                 starredList={this.state.starred}
-                starOn ={this.state.imageOn}
-                starOf ={this.state.imageOf}
+                starOn={this.state.imageOn}
+                starOf={this.state.imageOf}
               />
             )}
           </div>
@@ -99,8 +91,7 @@ class App extends Component {
               starredList={this.state.starred}
               langArray={this.state.icons}
               handleClick={this.handleEvent}
-            >
-            </Starred>
+            />
           </div>
         </Tabs>
       </div>

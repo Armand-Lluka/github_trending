@@ -18,16 +18,16 @@ const UL = styled.ul.attrs({
 })``;
 
 const ListItem = styled.li.attrs({
-  className: "flex items-center lh-copy pa3 ph0-l bb b--black-10"
+  className: "flex items-center lh-copy pa3 ph0-l bb b--black-10 "
 })``;
 
 const Star = styled.img.attrs({
   className: "h1 w1 h2-ns w2-ns"
-})``
+})``;
 
 const Content = styled.div.attrs({
   className: "pl3 flex-auto"
-})``
+})``;
 // Helper Functions
 
 const Capitalize = str => {
@@ -51,7 +51,7 @@ export default class List extends Component {
                       : "http://tachyons.io/img/avatar-mrmrs.jpg"
                   }
                 />
-                <Content >
+                <Content>
                   <Link href={result.url} target={"_blank"}>
                     <span className="f5 fw9 b db black-70">
                       {Capitalize(result.name)}
@@ -60,7 +60,7 @@ export default class List extends Component {
                   <span className="f6 db black-70">{result.description}</span>
                   <span className="f6 db black-70">{result.stars} stars</span>
                 </Content>
-                {(starredList.indexOf(result) !== -1) ? (
+                {starredList.indexOf(result) !== -1 ? (
                   <Star
                     src={iconsArray.StarOn}
                     onClick={() => handleClick(repoName[index])}
