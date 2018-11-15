@@ -27,9 +27,9 @@ class App extends Component {
   };
 
   handleEvent = ( clickRepo) => {
-    const { trendingRes, starred } = this.state;
+    const { starred } = this.state;
    
-    if (starred.indexOf(clickRepo) == -1) {
+    if (starred.indexOf(clickRepo) === -1) {
       starred.push(clickRepo);
       // const result = starred.reduce((a,b) => {
       //   if (a.indexOf(b.url) == -1){
@@ -66,7 +66,7 @@ class App extends Component {
             this.setState({ trendingRes: data.slice(0, 9) })
           }
         })
-        .then(console.log(this.state.lang))
+        // .then(console.log(this.state.lang))
         .then(this.setState({ lang: "" }))
         .then(this.setState({ isLoading: true }));
     }

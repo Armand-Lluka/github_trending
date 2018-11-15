@@ -14,13 +14,13 @@ export default class Tab extends Component {
     render() {
       const {
         onClick,
-        props: { activeTab, label }
+        props: { label }
       } = this;
   
       
   
       return (
-        <Tablist  onClick={onClick}>
+        <Tablist tabIndex="11"  onClick={onClick}>
           {label}
         </Tablist>
       );
