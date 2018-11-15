@@ -17,8 +17,6 @@ class App extends Component {
       icons: langArray,
       lang: "",
       isLoading: false,
-      // imageOf: langArray.StarOf,
-      // ImageOn: langArray.StarOn
     };
   }
 
@@ -28,19 +26,30 @@ class App extends Component {
     });
   };
 
-  handleEvent = (e, clickRepo) => {
+  handleEvent = ( clickRepo) => {
     const { trendingRes, starred } = this.state;
-    if(starred.indexOf(clickRepo) !== -1){
+   
+    if (starred.indexOf(clickRepo) == -1) {
+      starred.push(clickRepo);
+      // const result = starred.reduce((a,b) => {
+      //   if (a.indexOf(b.url) == -1){
+      //     a.push(b.url)
+      //   }
+      //   return a
+      // }, [])
+      console.log(starred.indexOf(clickRepo))
+    }
+   
+   else if(starred.indexOf(clickRepo) !== -1){
       console.log("hi")
       starred.splice(starred.indexOf(clickRepo), 1)
     }
-    else if (starred.indexOf(clickRepo) === -1) {
-      starred.push(clickRepo);
-    }
+
+
     
+
     this.forceUpdate()
-    // console.log(clickRepo)
-    // console.log(e.currentTarget.src)
+  
   }
 
   componentDidUpdate() {
@@ -50,15 +59,13 @@ class App extends Component {
           this.state.lang
         }&since=weekly`
       )
-        .then(
-          console.log(
-            `https://github-trending-api.now.sh/repositories?language=${
-              this.state.lang
-            }&since=weekly`
-          )
-        )
         .then(res => res.json())
-        .then(data => this.setState({ trendingRes: data.slice(0, 9) }))
+        // .then(data => {this.setState({ trendingRes: data.slice(0, 9) })})
+        .then(data => {
+          if (!this.state.trendingRes.includes(data)) {
+            this.setState({ trendingRes: data.slice(0, 9) })
+          }
+        })
         .then(console.log(this.state.lang))
         .then(this.setState({ lang: "" }))
         .then(this.setState({ isLoading: true }));
@@ -84,7 +91,6 @@ class App extends Component {
                 starredList={this.state.starred}
                 starOn ={this.state.imageOn}
                 starOf ={this.state.imageOf}
-
               />
             )}
           </div>
@@ -92,14 +98,11 @@ class App extends Component {
             <Starred
               starredList={this.state.starred}
               langArray={this.state.icons}
+              handleClick={this.handleEvent}
             >
-              {" "}
             </Starred>
           </div>
-
         </Tabs>
-
-        {/* <List repoName={this.state.trendingRes} langArray={this.state.icons} loading={this.state.isLoading} /> */}
       </div>
     );
   }

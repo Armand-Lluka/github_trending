@@ -54,7 +54,7 @@ export default class Starred extends Component {
                                 </A>
                                 <span className="f6 db black-70">{result.description}</span>
                             </div>
-                            <img src={iconsArray.StarOn} className="h1 w1 h2-ns w2-ns"  />
+                            <img src={iconsArray.StarOn} className="h1 w1 h2-ns w2-ns"  onClick={() => handleClick(starredList[index]) }/>
                     </ListItem>
                 )
                     })}
