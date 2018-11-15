@@ -25,6 +25,8 @@ const Section = styled.section.attrs({
     className: "flex items-center lh-copy pa3 ph0-l bb b--black-10"
   })``;
 
+  // Helper Functions //
+  
   const Capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };

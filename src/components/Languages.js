@@ -21,10 +21,6 @@ export default class Languages extends Component {
           <img src={this.props.langArray.C} alt="C" />
           <Span className="hide">C</Span>
         </Link>
-        {/* <Link onClick={ () => this.props.lang("c%23")}>
-          <img src={this.props.langArray["C#"]} alt="C#" />
-          <Span className>C#</Span>
-        </Link> */}
         <Link onClick={ () => this.props.lang('c%2B%2B')}>
           <img src={this.props.langArray["C++"]} alt="C++" />
           <Span className>C++</Span>

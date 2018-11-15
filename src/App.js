@@ -79,7 +79,7 @@ class App extends Component {
         <Header />
         <Languages langArray={this.state.icons} lang={e => this.setLang(e)} />
         <Tabs>
-          <div label="repos">
+          <div label="Trending Repos">
             {this.state.isLoading ? (
               <Spinner />
             ) : (
@@ -94,7 +94,7 @@ class App extends Component {
               />
             )}
           </div>
-          <div label="starred">
+          <div label="Saved Repos">
             <Starred
               starredList={this.state.starred}
               langArray={this.state.icons}
