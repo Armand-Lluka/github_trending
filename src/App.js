@@ -17,10 +17,9 @@ class App extends Component {
       icons: langArray,
       lang: "",
       isLoading: false,
-      imageOf: "",
-      ImageOn: ""
+      // imageOf: langArray.StarOf,
+      // ImageOn: langArray.StarOn
     };
-    // this.handleEvent = this.handleEvent.bind(this);
   }
 
   setLang = e => {
@@ -29,13 +28,20 @@ class App extends Component {
     });
   };
 
-  handleEvent = clickRepo => {
+  handleEvent = (e, clickRepo) => {
     const { trendingRes, starred } = this.state;
-    if (starred.indexOf(clickRepo) === -1) {
+    if(starred.indexOf(clickRepo) !== -1){
+      console.log("hi")
+      starred.splice(starred.indexOf(clickRepo), 1)
+    }
+    else if (starred.indexOf(clickRepo) === -1) {
       starred.push(clickRepo);
     }
-    console.log(starred);
-  };
+    
+    this.forceUpdate()
+    // console.log(clickRepo)
+    // console.log(e.currentTarget.src)
+  }
 
   componentDidUpdate() {
     if (this.state.lang !== "") {
@@ -75,6 +81,10 @@ class App extends Component {
                 langArray={this.state.icons}
                 loading={this.state.isLoading}
                 handleClick={this.handleEvent}
+                starredList={this.state.starred}
+                starOn ={this.state.imageOn}
+                starOf ={this.state.imageOf}
+
               />
             )}
           </div>

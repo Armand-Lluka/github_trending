@@ -38,14 +38,14 @@ const Capitalize = str => {
 
 export default class List extends Component {
   render() {
-    const {repoName, handleClick} = this.props
+    const {repoName, handleClick, starredList} = this.props
     return (
       <Section>
         {/* {this.props.loading ? <Spinner></Spinner> : <UL></UL> } */}
         {/* <Spinner className="ma7"></Spinner> */}
         <UL>
-          {repoName.map((d, index) => {
-            const lang = d.language;
+          {repoName.map((result, index) => {
+            const lang = result.language;
             return (
               <ListItem key={index}>
                 <Icon 
@@ -55,19 +55,16 @@ export default class List extends Component {
                       : "http://tachyons.io/img/avatar-mrmrs.jpg"
                   }
                 />
-
                 <div className="pl3 flex-auto">
-                  <A  href={d.url} target={"_blank"}>
+                  <A  href={result.url} target={"_blank"}>
                     <span className="f5 fw9 b db black-70">
-                      {Capitalize(d.name)}
+                      {Capitalize(result.name)}
                     </span> 
                   </A>
-                  <span  className="f6 db black-70">{d.description}</span>
+                  <span  className="f6 db black-70">{result.description}</span>
                 </div>
-                  {/* <a className=" nested-img img"> */}
-                  <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={() => handleClick(repoName[index])} />
-
-                  {/* </a> */}
+                {starredList.includes(result) ? <img  src={iconsArray.StarOn} className="h1 w1 h2-ns w2-ns" onClick={(e) => handleClick(e,repoName[index]) }  /> : <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={(e) => handleClick(e,repoName[index]) }  /> }
+  
               </ListItem>
             );
           })}
@@ -77,30 +74,5 @@ export default class List extends Component {
   }
 }
 
-// {
-/* <ul class="list pl0 mt0 measure center">
-<li class="flex items-center lh-copy pa3 ph0-l bb b--black-10">
-  <img
-    className="w2 h2 w3-ns h3-ns br-100"
-    src="http://tachyons.io/img/avatar-mrmrs.jpg"
-  />
-  <div class="pl3 flex-auto">
-    <span class="f6 db black-70">Mrmrs</span>
-    <span class="f6 db black-70">Medium Hexagon, LLC</span>
-  </div>
-  <div>
-    <a href="tel:" class="f6 link blue hover-dark-gray">
-      +1 (999) 555-5555
-    </a>
-  </div>
-</li>
-</ul> */
-// }
-
-// {repoName.map((d, index) => {
-//   return (
-//     <a className="link" href={d.url}>
-//       <Name key={index}>{d.name}</Name>
-//     </a>
-//   );
-// })}
+                {/* <img  src={starredList.includes(d) ? iconsArray.StarOn : iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={(e) => handleClick(e,repoName[index]) }  /> */}
+                {/* <img  src={iconsArray.StarOf} className="h1 w1 h2-ns w2-ns" onClick={(e) => handleClick(e,repoName[index]) }  /> */}
