@@ -44,6 +44,7 @@ class App extends Component {
     this.forceUpdate();
   };
 
+  
   componentDidUpdate() {
     if (this.state.lang !== "") {
       fetch(
@@ -71,7 +72,7 @@ class App extends Component {
         <Header />
         <Languages langArray={this.state.icons} lang={e => this.setLang(e)} />
         <Tabs>
-          <div label="Trending Repos">
+          <div label="Trending">
             {this.state.isLoading ? (
               <Spinner />
             ) : (
@@ -86,7 +87,7 @@ class App extends Component {
               />
             )}
           </div>
-          <div label="Saved Repos">
+          <div label="Starred ">
             <Starred
               starredList={this.state.starred}
               langArray={this.state.icons}
