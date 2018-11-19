@@ -6,6 +6,7 @@ import langArray from "./components/icons/iconsArray";
 import Spinner from "./components/Spinner";
 import Starred from "./components/Starred";
 import Tabs from "./components/Tabs";
+
 // import styled from "styled-components";
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
     this.state = {
       trendingRes: [],
       starred: [],
+      apiSearch: false,
       icons: langArray,
       lang: "",
       isLoading: false
@@ -21,9 +23,11 @@ class App extends Component {
   }
 
   setLang = e => {
-    this.setState({
-      lang: e
-    });
+    this.setState(prevState => ({
+      lang: e,
+      apiSearch: !prevState.apiSearch,
+      isLoading: !prevState.isLoading
+    }));
   };
 
   handleEvent = clickRepo => {
@@ -32,19 +36,22 @@ class App extends Component {
     if (starred.indexOf(clickRepo) === -1) {
       this.setState(prevState => ({
         starred: [...prevState.starred, clickRepo]
-      }))
-
-    }
-    else if (starred.indexOf(clickRepo) !== -1) {
-      this.setState(prevState => ({ 
+      }));
+    } else if (starred.indexOf(clickRepo) !== -1) {
+      this.setState(prevState => ({
         starred: starred.splice(starred.includes(clickRepo))
-      }))
+      }));
     }
   };
 
-  
+  handleSpinner = () => {
+    this.setState(prevState => ({
+      isLoading: !prevState.isLoading
+    }));
+  };
+
   componentDidUpdate() {
-    if (this.state.lang !== "" && this.state.isLoading === false) {
+    if (this.state.lang !== "" && this.state.apiSearch === true) {
       fetch(
         `https://github-trending-api.now.sh/repositories?language=${
           this.state.lang
@@ -53,13 +60,16 @@ class App extends Component {
         .then(res => res.json())
         .then(data => {
           if (!this.state.trendingRes.includes(data)) {
+            console.log(data);
             this.setState({ trendingRes: data.slice(0, 9) });
           }
         })
-        // .then(console.log(this.state.lang))
-        // .then(this.setState({ lang: "" }))
-        .then(this.setState({ isLoading: true }));
+        .then(this.setState(prevState => ({ apiSearch: !prevState.apiSearch })))
+        .then(
+          this.setState(prevState => ({ isLoading: !prevState.isLoading }))
+        );
     }
+
     this.state.isLoading = false;
   }
 
@@ -70,10 +80,15 @@ class App extends Component {
         <Languages langArray={this.state.icons} lang={e => this.setLang(e)} />
         <Tabs>
           <div label="Trending">
+            //{" "}
             {this.state.isLoading ? (
-              <Spinner />
+              <Spinner
+                isLoading={this.handleSpinner}
+                repoName={this.state.trendingRes}
+              />
             ) : (
               <List
+                isLoading={this.handleSpinner}
                 repoName={this.state.trendingRes}
                 langArray={this.state.icons}
                 loading={this.state.isLoading}
@@ -98,3 +113,4 @@ class App extends Component {
 }
 
 export default App;
+
