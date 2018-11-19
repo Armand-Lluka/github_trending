@@ -38,8 +38,11 @@ class App extends Component {
         starred: [...prevState.starred, clickRepo]
       }));
     } else if (starred.indexOf(clickRepo) !== -1) {
+      console.log(starred.indexOf(clickRepo))
       this.setState(prevState => ({
-        starred: starred.splice(starred.includes(clickRepo))
+        // starred: starred.splice(starred.indexOf(clickRepo))
+        starred: starred.filter( item => item !== clickRepo)
+
       }));
     }
   };
@@ -75,12 +78,12 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="min-vh-100">
         <Header />
         <Languages langArray={this.state.icons} lang={e => this.setLang(e)} />
-        <Tabs>
+        <Tabs >
           <div label="Trending">
-            //{" "}
+            {/* {" "} */}
             {this.state.isLoading ? (
               <Spinner
                 isLoading={this.handleSpinner}
