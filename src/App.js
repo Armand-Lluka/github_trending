@@ -30,40 +30,37 @@ class App extends Component {
     const { starred } = this.state;
 
     if (starred.indexOf(clickRepo) === -1) {
-      starred.push(clickRepo);
-      // const result = starred.reduce((a,b) => {
-      //   if (a.indexOf(b.url) == -1){
-      //     a.push(b.url)
-      //   }
-      //   return a
-      // }, [])
-      console.log(starred.indexOf(clickRepo));
-    } else if (starred.indexOf(clickRepo) !== -1) {
-      starred.splice(starred.indexOf(clickRepo), 1);
+      this.setState(prevState => ({
+        starred: [...prevState.starred, clickRepo]
+      }))
+
     }
-    this.forceUpdate();
+    else if (starred.indexOf(clickRepo) !== -1) {
+      this.setState(prevState => ({ 
+        starred: starred.splice(starred.includes(clickRepo))
+      }))
+    }
   };
 
   
   componentDidUpdate() {
-    if (this.state.lang !== "") {
+    if (this.state.lang !== "" && this.state.isLoading === false) {
       fetch(
         `https://github-trending-api.now.sh/repositories?language=${
           this.state.lang
         }&since=weekly`
       )
         .then(res => res.json())
-        // .then(data => {this.setState({ trendingRes: data.slice(0, 9) })})
         .then(data => {
           if (!this.state.trendingRes.includes(data)) {
             this.setState({ trendingRes: data.slice(0, 9) });
           }
         })
         // .then(console.log(this.state.lang))
-        .then(this.setState({ lang: "" }))
-        .then(this.setState({ isLoading: true }));
+        // .then(this.setState({ lang: "" }))
+        // .then(this.setState({ isLoading: true }));
     }
-    this.state.isLoading = false;
+    // this.state.isLoading = false;
   }
 
   render() {
