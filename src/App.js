@@ -58,9 +58,9 @@ class App extends Component {
         })
         // .then(console.log(this.state.lang))
         // .then(this.setState({ lang: "" }))
-        // .then(this.setState({ isLoading: true }));
+        .then(this.setState({ isLoading: true }));
     }
-    // this.state.isLoading = false;
+    this.state.isLoading = false;
   }
 
   render() {
